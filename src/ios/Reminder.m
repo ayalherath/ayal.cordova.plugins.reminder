@@ -181,4 +181,29 @@
      }];
 }
 
+-(void) markAsPending:(CDVInvokedUrlCommand*)command
+{
+    NSDictionary* options = [command.arguments objectAtIndex:0];
+    NSString* calendarItemIdentifier = [options objectForKey:@"calendarItemIdentifier"];
+    
+    NSPredicate *predicate = [eventStore predicateForRemindersInCalendars:nil];
+    [eventStore fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders)
+     {
+         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"calendarItemIdentifier matches %@", calendarItemIdentifier];
+         NSArray *results = [reminders filteredArrayUsingPredicate:predicate];
+         
+         for(int i=0;i<results.count;i++)
+         {
+             EKReminder *reminder = [results objectAtIndex:i];
+             reminder.completed = 0;
+             NSError *error = nil;
+             [self.eventStore saveReminder:reminder commit:YES error:&error];
+         }
+         
+         NSLog(@"Successfully Compleated the reminder");
+         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+     }];
+}
+
 @end
