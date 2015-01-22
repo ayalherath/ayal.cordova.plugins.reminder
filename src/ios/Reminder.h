@@ -27,5 +27,7 @@
 
 - (void)markAsCompleated:(CDVInvokedUrlCommand*)command;
 
+- (void)markAsPending:(CDVInvokedUrlCommand*)command;
+
 
 @end
