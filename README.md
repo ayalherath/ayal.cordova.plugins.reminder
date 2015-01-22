@@ -21,7 +21,7 @@ This plugin allows you to add reminders and get reminders of iOS mobile device.
 Reminder is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman) and ready for the [PhoneGap 3.0 CLI](http://docs.phonegap.com/en/3.0.0/guide_cli_index.md.html#The%20Command-line%20Interface_add_features), here's how it works with the CLI:
 
 ```
-$ cordova plugin add https://github.com/ayalherath/ayal.cordova.plugins.reminder.git
+$ cordova plugin add https://github.com/ayalherath/ayalherath-ayal.cordova.plugins.reminder.git
 ```
 and run this command afterwards:
 ```
