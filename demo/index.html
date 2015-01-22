@@ -73,6 +73,71 @@ function getAllReminders(){
     }
 }
 
+var deleteReminderByTitle (){
+    
+    var title = "My reminder";
+    window.plugins.Reminder.deleteReminderByTitle(title,success,error);
+    
+    function success(result)
+    {
+        alert("Success");
+    }
+    
+    function error(result)
+    {
+        alert("Success: " + JSON.stringify(result));
+    }
+}
+
+var deleteReminderBycalendarItemIdentifier (){
+    
+    var calendarItemIdentifier = "YOUR ItemIdentifier";
+    window.plugins.Reminder.deleteReminderBycalendarItemIdentifier(calendarItemIdentifier,success,error);
+    
+    function success(result)
+    {
+        alert("Success");
+    }
+    
+    function error(result)
+    {
+        alert("Success: " + JSON.stringify(result));
+    }
+}
+
+var markAsCompleated(){
+    
+    var calendarItemIdentifier = "YOUR ItemIdentifier";
+    window.plugins.Reminder.markAsCompleated(calendarItemIdentifier,success,error);
+    
+    function success(result)
+    {
+        alert("Success");
+    }
+    
+    function error(result)
+    {
+        alert("Success: " + JSON.stringify(result));
+    }
+}
+
+var markAsPending(){
+    
+    var calendarItemIdentifier = "YOUR ItemIdentifier";
+    window.plugins.Reminder.markAsPending(calendarItemIdentifier,success,error);
+    
+    function success(result)
+    {
+        alert("Success");
+    }
+    
+    function error(result)
+    {
+        alert("Success: " + JSON.stringify(result));
+    }
+}
+
+
   window.onerror = function(msg, file, line) {
     alert(msg + '; ' + file + '; ' + line);
   };
