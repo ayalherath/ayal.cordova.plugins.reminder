@@ -47,14 +47,38 @@
     NSPredicate *predicate = [eventStore predicateForRemindersInCalendars:nil];
     [eventStore fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders)
      {
-         //NSMutableArray *remindersArray = [[NSMutableArray alloc] initWithArray:reminders];
-         NSMutableArray *remindersArray = [[NSMutableArray alloc] init];
+         NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:reminders.count];
+         
+         NSDateFormatter *df = [[NSDateFormatter alloc] init];
+         [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+         
          for(int i=0; i<reminders.count; i++)
          {
-             EKReminder *event = [reminders objectAtIndex:i];
-             [remindersArray addObject:[NSString stringWithFormat:@"%@",event.title]];
+             EKReminder *reminder = [reminders objectAtIndex:i];
+
+             NSMutableDictionary *entry = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                           reminder.title, @"title",
+                                           reminder.calendarItemIdentifier, @"calendarItemIdentifier",
+                                           [NSString stringWithFormat:@"%ld", (long)reminder.priority], @"priority",
+                                           nil];
+             if (reminder.completionDate != nil)
+             {
+                 [entry setObject:[df stringFromDate:reminder.completionDate] forKey:@"completionDate"];
+             }
+             
+             if (reminder.creationDate != nil)
+             {
+                 [entry setObject:[df stringFromDate:reminder.creationDate] forKey:@"completionDate"];
+             }
+             
+             if ([NSString stringWithFormat:@"%ld", (long)reminder.completed])
+             {
+                 [entry setObject:[NSString stringWithFormat:@"%ld", (long)reminder.completed] forKey:@"completed"];
+             }
+             
+             [results addObject:entry];
          }
-         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsArray:remindersArray];
+         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsArray:results];
          [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
      }];
 }
@@ -85,40 +109,4 @@
         return;
     }
 }
-
-
-
-//-(NSMutableArray *)GetReminders
-//{
-//    eventStore = [[EKEventStore alloc] init];
-//    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error)
-//     {
-//         //_remindersArray = [[NSMutableArray alloc] init];
-//         // Create the predicate from the event store's instance method
-//         NSPredicate *predicate = [eventStore predicateForRemindersInCalendars:nil];
-//         NSMutableArray *remindersArray;
-//         [eventStore fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders)
-//          {
-//              NSMutableArray *remindersArray = [[NSMutableArray alloc] initWithArray:reminders];
-//          }];
-//     }];
-//    return nil;
-//}
-//
-//-(BOOL)AddEventReminder : (NSString *)reminderTitle
-//{
-//    EKReminder *reminder = [EKReminder reminderWithEventStore:eventStore];
-//    [reminder setTitle:@"program test"];
-//    EKCalendar *defaultReminderList = [eventStore defaultCalendarForNewReminders];
-//    
-//    [reminder setCalendar:defaultReminderList];
-//    
-//    NSError *error = nil;
-//    BOOL success = [eventStore saveReminder:reminder
-//                                     commit:YES
-//                                      error:&error];
-//    return nil;
-//}
-
-
 @end
