@@ -62,6 +62,13 @@ Basic operations, you'll want to copy-paste this for testing purposes:
 
  window.plugins.Reminder.addReminder(title,success,error);
 
+ window.plugins.Reminder.deleteReminderByTitle(title,success,error);
+
+ window.plugins.Reminder.deleteReminderBycalendarItemIdentifier(calendarItemIdentifier,success,error);
+ 
+ window.plugins.Reminder.markAsCompleated(calendarItemIdentifier,success,error);
+ 
+ window.plugins.Reminder.markAsPending(calendarItemIdentifier,success,error);
 
 ```
 
