@@ -30,6 +30,12 @@ Reminder.prototype.markAsCompleated = function (calendarItemIdentifier, successC
      }]);
 };
 
+Reminder.prototype.markAsPending = function (calendarItemIdentifier, successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "Reminder", "markAsPending", [{
+     "calendarItemIdentifier": calendarItemIdentifier
+     }]);
+};
+
 Reminder.install = function () {
   if (!window.plugins) {
     window.plugins = {};
