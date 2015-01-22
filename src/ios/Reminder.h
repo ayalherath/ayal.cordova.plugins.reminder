@@ -21,5 +21,11 @@
 
 - (void)getAllReminders:(CDVInvokedUrlCommand*)command;
 
+- (void)deleteReminderByTitle:(CDVInvokedUrlCommand*)command;
+
+- (void)deleteReminderByCalendarItemIdentifier:(CDVInvokedUrlCommand*)command;
+
+- (void)markAsCompleated:(CDVInvokedUrlCommand*)command;
+
 
 @end
