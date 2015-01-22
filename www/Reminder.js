@@ -18,7 +18,7 @@ Reminder.prototype.deleteReminderByTitle = function (title, successCallback, err
      }]);
 };
                
-Reminder.prototype.deleteReminderBycalendarItemIdentifier = function (calendarItemIdentifier, successCallback, errorCallback) {
+Reminder.prototype.deleteReminderByCalendarItemIdentifier = function (calendarItemIdentifier, successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, "Reminder", "deleteReminderByCalendarItemIdentifier", [{
      "calendarItemIdentifier": calendarItemIdentifier
      }]);
