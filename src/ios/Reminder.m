@@ -172,7 +172,7 @@
              EKReminder *reminder = [results objectAtIndex:i];
              reminder.completed = 1;
              NSError *error = nil;
-             [self.eventStore removeReminder:reminder commit:YES error:&error];
+             [self.eventStore saveReminder:reminder commit:YES error:&error];
          }
          
          NSLog(@"Successfully Compleated the reminder");
