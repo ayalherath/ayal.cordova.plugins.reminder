@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="ayal.cordova.plugins.reminder"
+    version="4.2.9">
+
+   <name>Calendar</name>
+
+   <description>
+     This plugin allows you to manipulate the native reminder.
+   </description>
+
+   <license>MIT</license>
+
+   <engines>
+      <engine name="cordova" version=">=3.0.0" />
+   </engines>
+
+   <js-module src="www/Reminder.js" name="Reminder">
+      <clobbers target="Reminder" />
+   </js-module>
+
+  <js-module src="test/tests.js" name="tests">
+  </js-module>
+
+  <!-- ios -->
+   <platform name="ios">
+      <config-file target="config.xml" parent="/*">
+         <feature name="Reminder">
+            <param name="ios-package" value="Reminder" />
+         </feature>
+      </config-file>
+      <header-file src="src/ios/Reminder.h" />
+      <source-file src="src/ios/Reminder.m" />
+      <framework src="EventKit.framework" />
+      <framework src="EventKitUI.framework" />
+   </platform>
+   
+   <!-- android -->
+</plugin>
