@@ -13,7 +13,6 @@ This plugin allows you to add reminders and get reminders of iOS mobile device.
 
 ### iOS specifics
 * Supported methods: `find`, `create`, ..
-* All methods work without showing the native reminder. Your app never looses control.
 * Tested on iOS 8.
 
 ## 2. Installation
