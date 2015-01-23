@@ -41,7 +41,6 @@
     }
 }
 
-
 -(void)getAllReminders:(CDVInvokedUrlCommand*)command
 {
     [self.commandDelegate runInBackground:^{
@@ -84,7 +83,6 @@
          }];
     }];
 }
-
 
 - (void)addReminder:(CDVInvokedUrlCommand*)command
 {
@@ -132,9 +130,17 @@
                  [self.eventStore removeReminder:[results objectAtIndex:i] commit:YES error:&error];
              }
              
-             NSLog(@"Successfully deleted the reminders");
-             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             if(results.count==0)
+             {
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No reminder found to delete"];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
+             else
+             {
+                 NSLog(@"Successfully deleted the reminders");
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
          }];
     }];
 }
@@ -157,9 +163,17 @@
                  [self.eventStore removeReminder:[results objectAtIndex:i] commit:YES error:&error];
              }
              
-             NSLog(@"Successfully deleted the reminder");
-             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             if(results.count==0)
+             {
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No reminder found to delete"];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
+             else
+             {
+                 NSLog(@"Successfully deleted the reminder");
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
          }];
     }];
 }
@@ -184,9 +198,17 @@
                  [self.eventStore saveReminder:reminder commit:YES error:&error];
              }
              
-             NSLog(@"Successfully Compleated the reminder");
-             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             if(results.count==0)
+             {
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No reminder found to update"];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
+             else
+             {
+                 NSLog(@"Successfully Compleated the reminder");
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
          }];
     }];
 }
@@ -211,9 +233,17 @@
                  [self.eventStore saveReminder:reminder commit:YES error:&error];
              }
              
-             NSLog(@"Successfully Compleated the reminder");
-             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             if(results.count==0)
+             {
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No reminder found to update"];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
+             else
+             {
+                 NSLog(@"Successfully Compleated the reminder");
+                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
          }];
     }];
 }
